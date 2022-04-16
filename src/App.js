@@ -6,12 +6,13 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      name: 'Maria'
+      name: { firstName: 'Maria', lastName: 'Campbell' },
+      company: 'IGMN'
     }
   }
     changeNameHandler = () => {
       this.setState({
-        name: 'George'
+        name: { firstName: 'George', lastName: 'Clooney' }
       })
     }
     render() {
@@ -20,7 +21,7 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
-              Hi {this.state.name}
+              Hi, I am {this.state.name.firstName} {this.state.name.lastName}, and I work at {this.state.company}.
               {console.log(this.state)}
             </p>
             <button onClick={this.changeNameHandler}>Change name</button>
