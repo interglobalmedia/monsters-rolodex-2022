@@ -10,25 +10,29 @@ class App extends Component {
       company: 'IGMN'
     }
   }
-    changeNameHandler = () => {
-      this.setState({
+  changeNameHandler = () => {
+    this.setState(() => {
+      return {
         name: { firstName: 'George', lastName: 'Clooney' }
-      })
-    }
-    render() {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Hi, I am {this.state.name.firstName} {this.state.name.lastName}, and I work at {this.state.company}.
-              {console.log(this.state)}
-            </p>
-            <button onClick={this.changeNameHandler}>Change name</button>
-          </header>
-        </div>
-      );
-    }
+      }
+    }, () => {
+      console.log(this.state)
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Hi, I am {this.state.name.firstName} {this.state.name.lastName}, and I work at {this.state.company}.
+            {console.log(this.state)}
+          </p>
+          <button onClick={this.changeNameHandler}>Change name</button>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
