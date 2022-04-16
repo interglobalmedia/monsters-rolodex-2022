@@ -9,19 +9,25 @@ class App extends Component {
       name: 'Maria'
     }
   }
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi {this.state.name}
-          </p>
-          <button>Change name</button>
-        </header>
-      </div>
-    );
-  }
+    changeNameHandler = () => {
+      this.setState({
+        name: 'George'
+      })
+    }
+    render() {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Hi {this.state.name}
+              {console.log(this.state)}
+            </p>
+            <button onClick={this.changeNameHandler}>Change name</button>
+          </header>
+        </div>
+      );
+    }
 }
 
 export default App;
