@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react'
 
@@ -33,21 +32,18 @@ class App extends Component {
   searchInputChangeHandler = (event) => {
     console.log(event)
     event.preventDefault()
-    this.setState(() => {
-      return {
-        searchInputField: event.target.value
-      }
-    }, () => {
-      console.log(this.state)
-    })  
+    const { monsters, searchInputField } = this.state
+    const filteredMonsters = monsters.filter((monster) =>
+      (monster.name.toLowerCase().includes(searchInputField.toLowerCase())))
+    this.setState({
+      searchInputField: event.target.value,
+      monsters: filteredMonsters
+    })
   }
  
   render() {
     console.log(`render`)
-    const { monsters, searchInputField } = this.state
-    const filteredMonsters = monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(searchInputField.toLowerCase()))
-    console.log(filteredMonsters)
+    const {monsters} = this.state
     return (
       <div className="App">
         <input className="search-box" type="search" placeholder="search monsters" onChange={this.searchInputChangeHandler} />
