@@ -8,14 +8,12 @@ class App extends Component {
       monsters: [],
       searchInputField: ''
     }
-    console.log('constructor')
   }
 
   async componentDidMount() {
     try {
       let response = await fetch(`https://jsonplaceholder.typicode.com/users`)
       let users = await response.json();
-      console.log(users)
       this.setState(() => {
         return {
           monsters: users
@@ -26,30 +24,32 @@ class App extends Component {
     } catch (error) {
       console.log(error)
     }
-    console.log(`componentDidMount`)
   }
 
   searchInputChangeHandler = (event) => {
-    console.log(event)
     event.preventDefault()
-    const { monsters, searchInputField } = this.state
-    const filteredMonsters = monsters.filter((monster) =>
-      (monster.name.toLowerCase().includes(searchInputField.toLowerCase())))
-    this.setState({
-      searchInputField: event.target.value,
-      monsters: filteredMonsters
+    const searchInputField = event.target.value.toLowerCase()
+    this.setState(() => {
+      return {
+        searchInputField
+      }
+    }, () => {
+      console.log(this.state)
     })
   }
  
   render() {
-    console.log(`render`)
-    const {monsters} = this.state
+    const { monsters, searchInputField } = this.state
+    const { searchInputChangeHandler } = this
+    const filteredMonsters = monsters.filter(monster => {
+      return monster.name.toLowerCase().includes(searchInputField)
+    })
     return (
       <div className="App">
-        <input className="search-box" type="search" placeholder="search monsters" onChange={this.searchInputChangeHandler} />
-        {monsters.map((monster) => (
-          <h1 key={monster.id}>{monster.name}</h1>
-        ))}
+        <input className="search-box" type="search" placeholder="search monsters" onInput={searchInputChangeHandler} />
+        <ul>
+          {filteredMonsters.map(monster => (<li key={monster.id}>{monster.name}</li>))}
+          </ul>
         </div>
     );
   }
