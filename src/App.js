@@ -33,7 +33,7 @@ class App extends Component {
     if (searchInputField) {
       input.style.backgroundColor = `#7a7ad8`
       input.style.color = `#e4ddd3`
-      input.style.border = `1px solid #000`
+      input.style.border = `1px solid #828282`
     } else {
       input.style.backgroundColor = ``
       input.style.color = ``
@@ -55,8 +55,8 @@ class App extends Component {
     return (
       <div className="App">
         <main>
-          <SearchBox onInput={searchInputChangeHandler} />
-          <CardList filteredMonsters={filteredMonsters} />
+          <SearchBox className="monsters-search-box" placeholder="search monsters" onChange={searchInputChangeHandler} autofocus="autofocus" />
+          <CardList className="monsters-card-list" filteredMonsters={filteredMonsters} />
         </main>
         <footer>
           <p>@ 2022 Maria D. Campbell</p>

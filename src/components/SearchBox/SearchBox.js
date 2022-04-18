@@ -1,13 +1,13 @@
 import SearchBoxWrapper from '../SearchBoxWrapper/SearchBoxWrapper'
-import './SearchBox.scss'
+import classes from './SearchBox.module.scss'
 
-const Input = (props) => {
+const SearchBox = (props) => {
     return (
-        <SearchBoxWrapper className="fieldset">
+        <SearchBoxWrapper className="monsters-fieldset">
             <h2>Search The Monsters!</h2>
-            <input className="search-box" type="search" placeholder="search monsters" onInput={props.onInput} />
+            <input className={`${classes["search-box"]} ${props.className}`} type="search" placeholder={props.placeholder} onChange={props.onChange} autoFocus={props.autofocus}/>
         </SearchBoxWrapper>
     )
 }
 
-export default Input
+export default SearchBox
