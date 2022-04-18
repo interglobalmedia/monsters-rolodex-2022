@@ -1,5 +1,7 @@
-import './App.css';
+import './App.scss';
 import { Component } from 'react'
+import CardList from './components/CardList/CardList'
+import SearchBox from './components/SearchBox/SearchBox'
 
 class App extends Component {
   constructor() {
@@ -18,9 +20,7 @@ class App extends Component {
         return {
           monsters: users
         }
-      }, () => [
-        console.log(this.state)
-      ])
+      })
     } catch (error) {
       console.log(error)
     }
@@ -29,12 +29,20 @@ class App extends Component {
   searchInputChangeHandler = (event) => {
     event.preventDefault()
     const searchInputField = event.target.value.toLowerCase()
+    const input = document.querySelector('input')
+    if (searchInputField) {
+      input.style.backgroundColor = `#7a7ad8`
+      input.style.color = `#e4ddd3`
+      input.style.border = `1px solid #000`
+    } else {
+      input.style.backgroundColor = ``
+      input.style.color = ``
+      input.style.border = ``
+    }
     this.setState(() => {
       return {
         searchInputField
       }
-    }, () => {
-      console.log(this.state)
     })
   }
  
@@ -46,11 +54,14 @@ class App extends Component {
     })
     return (
       <div className="App">
-        <input className="search-box" type="search" placeholder="search monsters" onInput={searchInputChangeHandler} />
-        <ul>
-          {filteredMonsters.map(monster => (<li key={monster.id}>{monster.name}</li>))}
-          </ul>
-        </div>
+        <main>
+          <SearchBox onInput={searchInputChangeHandler} />
+          <CardList filteredMonsters={filteredMonsters} />
+        </main>
+        <footer>
+          <p>@ 2022 Maria D. Campbell</p>
+        </footer>
+      </div>
     );
   }
 }
