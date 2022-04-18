@@ -1,11 +1,11 @@
 import Card from '../Card/Card'
-import './CardList.scss'
+import classes from './CardList.module.scss'
 
 const CardList = (props) => {
     const { filteredMonsters } = props
     return (
-        <ul>
-          {filteredMonsters.map(monster => (<Card key={monster.id} monster={monster} />))}
+        <ul className={`${classes["card-list"]} ${props.className}`}>
+          {filteredMonsters.map(monster => (<Card className="monsters-card-container" key={monster.id} monster={monster} />))}
         </ul>
     )
 }

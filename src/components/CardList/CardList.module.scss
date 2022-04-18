@@ -1,7 +1,7 @@
 /*  scss variables */
 $max799: "(max-width: 799px)";
 
-ul {
+.card-list {
     display: grid;
     column-gap: 1.88rem;
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
