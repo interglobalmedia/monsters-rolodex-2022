@@ -8,7 +8,7 @@ const Card = (props) => {
         <li className={`${classes["card-container"]} ${props.className}}`}>
             <figure className={`${classes["card-container__image"]} ${props.className}`}>
                 <LazyLoadImage
-                    src={`https://robohash.org/${monster.id}?set=set3&size=300x300`} alt="monster"
+                    src={`https://robohash.org/${monster.id}?set=set3`} alt="monster"
                     effect="blur"
                 />
                 <figcaption className={`${classes["card-container__data"]} ${props.className}`}>
